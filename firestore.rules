@@ -1,0 +1,85 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // Diagnostic connection test endpoint
+    match /test/connection {
+      allow read: if true;
+    }
+
+    // Residentes
+    match /residentes/{residenteId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(residenteId)
+        && incoming().nomeCompleto is string
+        && incoming().nomeCompleto.size() <= 200;
+      allow delete: if isValidId(residenteId);
+    }
+
+    // Cuidadores e Equipe de Saúde
+    match /cuidadores/{cuidadorId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(cuidadorId)
+        && incoming().matricula is string
+        && incoming().matricula.size() <= 64;
+      allow delete: if isValidId(cuidadorId);
+    }
+
+    // Anotações Diárias de Plantão
+    match /anotacoes_plantao/{anotacaoId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(anotacaoId)
+        && incoming().residenteId is string
+        && incoming().cuidadorMatricula is string;
+      allow delete: if isValidId(anotacaoId);
+    }
+
+    // Mapas e Grades de Prescrição Mensal
+    match /mapas_prescricao/{mapaId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(mapaId)
+        && incoming().residenteId is string;
+      allow delete: if isValidId(mapaId);
+    }
+
+    // Evoluções de Enfermagem (SAE)
+    match /evolucoes_enfermagem/{evolucaoId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(evolucaoId)
+        && incoming().residenteId is string;
+      allow delete: if isValidId(evolucaoId);
+    }
+
+    // Registros de Glicemia e Sinais Vitais
+    match /glicemia_vitais/{registroId} {
+      allow get, list: if true;
+      allow create, update: if isValidId(registroId)
+        && incoming().residenteId is string;
+      allow delete: if isValidId(registroId);
+    }
+
+    // Sessão Ativa de Plantão
+    match /configuracoes_sessao/{sessaoId} {
+      allow get, list: if true;
+      allow create, update, delete: if isValidId(sessaoId);
+    }
+
+    // Default catch-all deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,176 @@
+{
+  "entities": {
+    "Residente": {
+      "title": "Residente",
+      "description": "Ficha cadastral e clínica completa do residente no Victoria Lar Residencial",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "nomeCompleto": { "type": "string" },
+        "dataNascimento": { "type": "string" },
+        "idade": { "type": "number" },
+        "cpf": { "type": "string" },
+        "rg": { "type": "string" },
+        "sexo": { "type": "string", "enum": ["masculino", "feminino", "outro"] },
+        "quarto": { "type": "string" },
+        "grauDependencia": { "type": "string", "enum": ["grau1", "grau2", "grau3"] },
+        "mobilidade": { "type": "string" },
+        "tipoSanguineo": { "type": "string" },
+        "dieta": { "type": "string" },
+        "alergias": { "type": "array" },
+        "diagnosticos": { "type": "array" },
+        "medicamentosContinuos": { "type": "array" },
+        "convenioMedico": { "type": "string" },
+        "hospitalReferencia": { "type": "string" },
+        "nomeResponsavel": { "type": "string" },
+        "telefoneResponsavel": { "type": "string" },
+        "observacoesGerais": { "type": "string" },
+        "atualizadoEm": { "type": "string" }
+      },
+      "required": ["id", "nomeCompleto", "quarto", "grauDependencia"]
+    },
+    "Cuidador": {
+      "title": "Cuidador",
+      "description": "Profissional de saúde ou cuidador cadastrado no residencial",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "matricula": { "type": "string" },
+        "nomeCompleto": { "type": "string" },
+        "cargo": { "type": "string" },
+        "departamento": { "type": "string" },
+        "escala": { "type": "string" },
+        "registroProfissional": { "type": "string" },
+        "ativo": { "type": "boolean" },
+        "atualizadoEm": { "type": "string" }
+      },
+      "required": ["id", "matricula", "nomeCompleto", "cargo"]
+    },
+    "AnotacaoPlantao": {
+      "title": "AnotacaoPlantao",
+      "description": "Registro diário de passagem de plantão diurno ou noturno",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "residenteId": { "type": "string" },
+        "data": { "type": "string" },
+        "turno": { "type": "string", "enum": ["diurno", "noturno"] },
+        "cuidadorMatricula": { "type": "string" },
+        "cuidadorNome": { "type": "string" },
+        "cuidadorCargo": { "type": "string" },
+        "cuidadorRegistro": { "type": "string" },
+        "recebimentoPlantao": { "type": "object" },
+        "sinaisVitais": { "type": "object" },
+        "alimentacao": { "type": "object" },
+        "peleCurativos": { "type": "object" },
+        "eliminacoes": { "type": "object" },
+        "passagemPlantao": { "type": "object" },
+        "criadoEm": { "type": "string" },
+        "atualizadoEm": { "type": "string" }
+      },
+      "required": ["id", "residenteId", "data", "turno", "cuidadorMatricula", "cuidadorNome"]
+    },
+    "MapaPrescricao": {
+      "title": "MapaPrescricao",
+      "description": "Checagem mensal de cuidados e prescrições médicas e de enfermagem",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "residenteId": { "type": "string" },
+        "mes": { "type": "number" },
+        "ano": { "type": "number" },
+        "checagens": { "type": "object" },
+        "atualizadoEm": { "type": "string" }
+      },
+      "required": ["id", "residenteId", "mes", "ano", "checagens"]
+    },
+    "EvolucaoEnfermagem": {
+      "title": "EvolucaoEnfermagem",
+      "description": "Evolução de enfermagem e diagnósticos SAE do residente",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "residenteId": { "type": "string" },
+        "data": { "type": "string" },
+        "hora": { "type": "string" },
+        "cuidadorMatricula": { "type": "string" },
+        "cuidadorNome": { "type": "string" },
+        "cuidadorCargo": { "type": "string" },
+        "cuidadorRegistro": { "type": "string" },
+        "estadoGeral": { "type": "string" },
+        "sinaisVitais": { "type": "object" },
+        "condicoesGerais": { "type": "object" },
+        "diagnosticosEnfermagem": { "type": "array" },
+        "relatoEvolucao": { "type": "string" },
+        "condutaEEncaminhamentos": { "type": "string" },
+        "familiarInformado": { "type": "boolean" },
+        "criadoEm": { "type": "string" }
+      },
+      "required": ["id", "residenteId", "data", "cuidadorMatricula", "relatoEvolucao"]
+    },
+    "RegistroGlicemiaSinais": {
+      "title": "RegistroGlicemiaSinais",
+      "description": "Aferições de glicemia capilar e sinais vitais pontuais",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "residenteId": { "type": "string" },
+        "data": { "type": "string" },
+        "horario": { "type": "string" },
+        "tipo": { "type": "string", "enum": ["glicemia", "sinais_vitais", "ambos"] },
+        "glicemia": { "type": "number" },
+        "pressaoArterial": { "type": "string" },
+        "frequenciaCardiaca": { "type": "number" },
+        "temperatura": { "type": "number" },
+        "saturacaoO2": { "type": "number" },
+        "momento": { "type": "string" },
+        "cuidadorMatricula": { "type": "string" },
+        "cuidadorNome": { "type": "string" },
+        "observacoes": { "type": "string" },
+        "criadoEm": { "type": "string" }
+      },
+      "required": ["id", "residenteId", "data", "tipo", "cuidadorMatricula"]
+    },
+    "ConfiguracaoSessao": {
+      "title": "ConfiguracaoSessao",
+      "description": "Sessão e estado do cuidador ativo na instituição",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "cuidadorAtivo": { "type": "object" },
+        "atualizadoEm": { "type": "string" }
+      },
+      "required": ["id"]
+    }
+  },
+  "firestore": {
+    "/residentes/{residenteId}": {
+      "schema": "Residente",
+      "description": "Documentos individuais de cada idoso residente"
+    },
+    "/cuidadores/{cuidadorId}": {
+      "schema": "Cuidador",
+      "description": "Profissionais de enfermagem e cuidadores com suas matrículas"
+    },
+    "/anotacoes_plantao/{anotacaoId}": {
+      "schema": "AnotacaoPlantao",
+      "description": "Folhas de anotações diárias dos plantões diurno e noturno"
+    },
+    "/mapas_prescricao/{mapaId}": {
+      "schema": "MapaPrescricao",
+      "description": "Grades de checagem mensal de cuidados e prescrições médicas"
+    },
+    "/evolucoes_enfermagem/{evolucaoId}": {
+      "schema": "EvolucaoEnfermagem",
+      "description": "Relatórios de evolução de enfermagem e SAE"
+    },
+    "/glicemia_vitais/{registroId}": {
+      "schema": "RegistroGlicemiaSinais",
+      "description": "Registros de glicemia e aferições de sinais vitais"
+    },
+    "/configuracoes_sessao/{sessaoId}": {
+      "schema": "ConfiguracaoSessao",
+      "description": "Estado da sessão de trabalho institucional e plantão atual"
+    }
+  }
+}

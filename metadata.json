@@ -1,0 +1,6 @@
+{
+  "name": "Victoria Lar Residencial - Controle de Cuidados",
+  "description": "Sistema de controle de cuidados com os residentes, anotações de plantão diurno e noturno, checagem de prescrições e identificação de cuidadores por matrícula para a Victoria Lar Residencial.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
