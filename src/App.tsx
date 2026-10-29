@@ -136,13 +136,13 @@ export default function App() {
       />
 
       {/* 2. Cabeçalho Institucional Oficial */}
-      <header className="bg-gradient-to-r from-[#133827] via-[#174430] to-[#133827] text-white shadow-lg border-b border-[#dfb842]/40 relative overflow-hidden no-print">
+      <header className="bg-[#133827] text-white shadow-md border-b border-[#214f3b] relative overflow-hidden no-print">
         {/* Detalhes de iluminação sutil */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-[#dfb842]/5 rounded-full blur-3xl pointer-events-none -mr-20 -mt-20" />
         
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3.5">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <VictoriaLogo size="md" showSubtitle={true} />
             </div>
 
@@ -304,16 +304,16 @@ export default function App() {
       />
 
       {/* Rodapé Institucional Oficial */}
-      <footer className="bg-[#102c1e] text-stone-300 border-t border-[#dfb842]/40 py-8 px-4 sm:px-6 mt-12 no-print">
+      <footer className="bg-[#133827] text-stone-300 border-t border-[#214f3b] py-8 px-4 sm:px-6 mt-12 no-print">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div className="flex flex-col items-center md:items-start gap-2">
-            <VictoriaLogo size="sm" showSubtitle={false} />
-            <p className="text-xs text-stone-400 max-w-md">
+          <div className="flex flex-col items-center md:items-start gap-2.5">
+            <VictoriaLogo size="md" />
+            <p className="text-xs text-stone-300/80 max-w-md">
               Sistema Institucional de Controle de Cuidados, Checagem de Prescrições e Acompanhamento Assistencial Diário.
             </p>
           </div>
 
-          <div className="text-xs text-stone-400 space-y-1">
+          <div className="text-xs text-stone-300/80 space-y-1">
             <div className="font-semibold text-amber-200">
               Victoria Lar Residencial
             </div>

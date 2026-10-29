@@ -23,6 +23,7 @@ import {
   AnotacaoDiariaPlantao,
   CuidadorFuncionario
 } from '../types/care';
+import { VictoriaLogo } from './VictoriaLogo';
 
 interface CareHistoryAndReportProps {
   residente: ResidenteResumo;
@@ -115,13 +116,16 @@ export const CareHistoryAndReport: React.FC<CareHistoryAndReportProps> = ({
       {/* CABEÇALHO PARA IMPRESSÃO (Visível apenas ao imprimir) */}
       <div className="hidden print:block border-b-2 border-stone-800 pb-4 mb-6">
         <div className="flex justify-between items-start">
-          <div>
-            <h1 className="font-serif-brand font-bold text-2xl uppercase tracking-wide">
-              Victoria Lar Residencial
-            </h1>
-            <p className="text-xs text-stone-600">
-              PRONTUÁRIO & RELATÓRIO OFICIAL DE CONTROLE DE CUIDADOS ASSISTENCIAIS
-            </p>
+          <div className="flex items-center gap-3">
+            <VictoriaLogo size="md" />
+            <div>
+              <h1 className="font-serif-brand font-bold text-2xl uppercase tracking-wide">
+                Victoria Lar Residencial
+              </h1>
+              <p className="text-xs text-stone-600">
+                PRONTUÁRIO & RELATÓRIO OFICIAL DE CONTROLE DE CUIDADOS ASSISTENCIAIS
+              </p>
+            </div>
           </div>
           <div className="text-right text-xs">
             <div>Data de Emissão: {new Date().toLocaleDateString('pt-BR')}</div>
